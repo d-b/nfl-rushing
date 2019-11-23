@@ -34,7 +34,7 @@ defmodule Thescore.MixProject do
   defp deps do
     [
       {:absinthe, "~> 1.4"},
-      {:absinthe_ecto, ">= 0.0.0"},      
+      {:absinthe_ecto, ">= 0.0.0"},
       {:absinthe_plug, "~> 1.4"},
       {:absinthe_relay, "~> 1.4"},
       {:ecto_sql, "~> 3.1"},
