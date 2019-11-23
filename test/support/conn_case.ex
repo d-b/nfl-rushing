@@ -29,10 +29,11 @@ defmodule ThescoreWeb.ConnCase do
   end
 
   setup tags do
-    :ok = Ecto.Adapters.SQL.Sandbox.checkout(Thescore.Repo)
+    alias Ecto.Adapters.SQL.Sandbox
+    :ok = Sandbox.checkout(Thescore.Repo)
 
     unless tags[:async] do
-      Ecto.Adapters.SQL.Sandbox.mode(Thescore.Repo, {:shared, self()})
+      Sandbox.mode(Thescore.Repo, {:shared, self()})
     end
 
     {:ok, conn: Phoenix.ConnTest.build_conn()}
