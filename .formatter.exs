@@ -1,5 +1,10 @@
 [
-  import_deps: [:ecto, :phoenix],
+  import_deps: [
+    :absinthe,
+    :ecto,
+    :phoenix,
+    :plug
+  ],
   inputs: [
     "*.{ex,exs}",
     "priv/*/seeds.exs",
