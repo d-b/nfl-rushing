@@ -18,7 +18,7 @@ defmodule ThescoreWeb.Router do
 
     forward "/graphiql", Absinthe.Plug.GraphiQL, schema: ThescoreWeb.Schema
 
-    forward "/", Absinthe.Plug, schema: ThescoreWeb.Schema
+    forward "/graphql", Absinthe.Plug, schema: ThescoreWeb.Schema
   end
 
   scope "/", ThescoreWeb do
