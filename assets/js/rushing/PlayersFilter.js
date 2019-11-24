@@ -8,12 +8,10 @@ export default class PlayersFilter extends React.Component {
     name: '',
     team: '',
     position: '',
-    orderBy: [
-      {
-        field: 'YARDS',
-        direction: 'ASC',
-      }
-    ],
+    orderBy: {
+      order: 'YARDS',
+      direction: 'ASC'
+    }
   };
 
   handleChange = (event) => {
@@ -24,14 +22,10 @@ export default class PlayersFilter extends React.Component {
     const value = event.target.value;
 
     this.setState(state => {
-      const orderBy = state.orderBy.map(orderBy => ({
-        ...orderBy,
-        field: value,
-      }));
-
       return {
-        orderBy
-      };
+        order: value,
+        direction: state.orderBy.direction
+      }
     });
   }
 
@@ -39,21 +33,18 @@ export default class PlayersFilter extends React.Component {
     const value = event.target.value;
 
     this.setState(state => {
-      const orderBy = state.orderBy.map(orderBy => ({
-        ...orderBy,
-        direction: value,
-      }));
-
       return {
-        orderBy
-      };
+        order: state.orderBy.order,
+        direction: value
+      }
     });
   }
 
   handleSubmit = (event) => {
+    console.log(this.state);
     event.preventDefault();
     event.stopPropagation();
-    this.props.refetch(9, null, this.state);
+    this.props.refetch(10, null, this.state);
   }
 
   render() {
@@ -91,7 +82,7 @@ export default class PlayersFilter extends React.Component {
         <Form.Row>  
           <Form.Group as={Col} controlId="playersOrderBy">
             <Form.Label>Order by</Form.Label>
-            <Form.Control as="select" name="field" onChange={this.handleOrderByChange}>
+            <Form.Control as="select" name="order" onChange={this.handleOrderByChange}>
               <option value="YARDS">Total Rushing Yards</option>
               <option value="LONGEST_RUSH">Longest Rush</option>
               <option value="TOUCHDOWNS">Total Rushing Touchdowns</option>

@@ -71,6 +71,11 @@ const node/*: ReaderFragment*/ = {
       "kind": "RootArgument",
       "name": "team",
       "type": "String"
+    },
+    {
+      "kind": "RootArgument",
+      "name": "orderBy",
+      "type": "RushingPlayerOrder"
     }
   ],
   "selections": [
@@ -84,6 +89,11 @@ const node/*: ReaderFragment*/ = {
           "kind": "Variable",
           "name": "name",
           "variableName": "name"
+        },
+        {
+          "kind": "Variable",
+          "name": "orderBy",
+          "variableName": "orderBy"
         },
         {
           "kind": "Variable",
@@ -170,5 +180,5 @@ const node/*: ReaderFragment*/ = {
   ]
 };
 // prettier-ignore
-(node/*: any*/).hash = 'b4b75e9a64d8d9c62eab921dec8e7965';
+(node/*: any*/).hash = 'aa0a4a450eebc2de1c90fe2931ccff22';
 module.exports = node;

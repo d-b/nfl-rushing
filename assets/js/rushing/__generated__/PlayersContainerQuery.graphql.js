@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash ece58a63298af31feae3aec8453a6d41
+ * @relayHash 79aea8b09855c3d68bcbd573a53c9103
  */
 
 /* eslint-disable */
@@ -10,12 +10,19 @@
 /*::
 import type { ConcreteRequest } from 'relay-runtime';
 type Players_players$ref = any;
+export type OrderDirection = "ASC" | "DESC" | "%future added value";
+export type RushingOrder = "LONGEST_RUSH" | "TOUCHDOWNS" | "YARDS" | "%future added value";
+export type RushingPlayerOrder = {|
+  direction?: ?OrderDirection,
+  order?: ?RushingOrder,
+|};
 export type PlayersContainerQueryVariables = {|
   first: number,
   after?: ?string,
   name?: ?string,
   position?: ?string,
   team?: ?string,
+  orderBy?: ?RushingPlayerOrder,
 |};
 export type PlayersContainerQueryResponse = {|
   +$fragmentRefs: Players_players$ref
@@ -34,6 +41,7 @@ query PlayersContainerQuery(
   $name: String
   $position: String
   $team: String
+  $orderBy: RushingPlayerOrder
 ) {
   ...Players_players
 }
@@ -63,7 +71,7 @@ fragment PlayersTable_players on RushingPlayer {
 }
 
 fragment Players_players on RootQueryType {
-  rushingPlayers(first: $first, after: $after, name: $name, position: $position, team: $team) {
+  rushingPlayers(first: $first, after: $after, name: $name, position: $position, team: $team, orderBy: $orderBy) {
     edges {
       node {
         ...PlayersTable_players
@@ -111,6 +119,12 @@ var v0 = [
     "name": "team",
     "type": "String",
     "defaultValue": null
+  },
+  {
+    "kind": "LocalArgument",
+    "name": "orderBy",
+    "type": "RushingPlayerOrder",
+    "defaultValue": null
   }
 ],
 v1 = [
@@ -128,6 +142,11 @@ v1 = [
     "kind": "Variable",
     "name": "name",
     "variableName": "name"
+  },
+  {
+    "kind": "Variable",
+    "name": "orderBy",
+    "variableName": "orderBy"
   },
   {
     "kind": "Variable",
@@ -355,7 +374,8 @@ return {
         "filters": [
           "name",
           "position",
-          "team"
+          "team",
+          "orderBy"
         ]
       }
     ]
@@ -364,11 +384,11 @@ return {
     "operationKind": "query",
     "name": "PlayersContainerQuery",
     "id": null,
-    "text": "query PlayersContainerQuery(\n  $first: Int!\n  $after: ID\n  $name: String\n  $position: String\n  $team: String\n) {\n  ...Players_players\n}\n\nfragment PlayerRow_player on RushingPlayer {\n  id\n  name\n  team\n  position\n  attempts\n  attemptsPerGame\n  yards\n  yardsPerGame\n  average\n  touchdowns\n  longestRush\n  first\n  firstPercentage\n  twentyPlus\n  fortyPlus\n  fumbles\n}\n\nfragment PlayersTable_players on RushingPlayer {\n  id\n  ...PlayerRow_player\n}\n\nfragment Players_players on RootQueryType {\n  rushingPlayers(first: $first, after: $after, name: $name, position: $position, team: $team) {\n    edges {\n      node {\n        ...PlayersTable_players\n        id\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n}\n",
+    "text": "query PlayersContainerQuery(\n  $first: Int!\n  $after: ID\n  $name: String\n  $position: String\n  $team: String\n  $orderBy: RushingPlayerOrder\n) {\n  ...Players_players\n}\n\nfragment PlayerRow_player on RushingPlayer {\n  id\n  name\n  team\n  position\n  attempts\n  attemptsPerGame\n  yards\n  yardsPerGame\n  average\n  touchdowns\n  longestRush\n  first\n  firstPercentage\n  twentyPlus\n  fortyPlus\n  fumbles\n}\n\nfragment PlayersTable_players on RushingPlayer {\n  id\n  ...PlayerRow_player\n}\n\nfragment Players_players on RootQueryType {\n  rushingPlayers(first: $first, after: $after, name: $name, position: $position, team: $team, orderBy: $orderBy) {\n    edges {\n      node {\n        ...PlayersTable_players\n        id\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n}\n",
     "metadata": {}
   }
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = '7754b87e8322eb316ec0926ebf0425ef';
+(node/*: any*/).hash = '8cb4a2eb24ebb338cbf06574cf7bb33c';
 module.exports = node;

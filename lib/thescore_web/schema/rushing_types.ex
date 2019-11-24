@@ -4,6 +4,22 @@ defmodule ThescoreWeb.Schema.RushingTypes do
 
   connection(node_type: :rushing_player)
 
+  enum :order_direction do
+    value :asc
+    value :desc
+  end
+
+  enum :rushing_order do
+    value :yards
+    value :longest_rush
+    value :touchdowns
+  end
+
+  input_object :rushing_player_order do
+    field :order, :rushing_order
+    field :direction, :order_direction
+  end
+
   @desc "A player along with their rushing stats"
   node object(:rushing_player) do
     field :name, :string

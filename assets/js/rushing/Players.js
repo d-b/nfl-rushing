@@ -44,7 +44,7 @@ class Players extends React.Component {
     this.props.relay.loadMore(
       10,  // Fetch the next 10 feed items
       error => {
-        console.log(error);
+        if (error) console.log(error);
       },
     );
   }
@@ -61,6 +61,7 @@ const PlayersContainer = createPaginationContainer(
           name: $name
           position: $position
           team: $team
+          orderBy: $orderBy
         ) @connection(key: "Players_rushingPlayers") {
           edges  {
             node {
@@ -94,6 +95,7 @@ const PlayersContainer = createPaginationContainer(
         $name: String
         $position: String
         $team: String
+        $orderBy: RushingPlayerOrder
       ) {
         ...Players_players
       }
@@ -105,7 +107,7 @@ export default () => (
   <QueryRenderer
     environment={environment}
     query={graphql`
-      query PlayersContainerQuery($first: Int!, $after: ID, $name: String, $position: String, $team: String) {
+      query PlayersContainerQuery($first: Int!, $after: ID, $name: String, $position: String, $team: String, $orderBy: RushingPlayerOrder) {
         ...Players_players
       }
     `}

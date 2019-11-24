@@ -28,6 +28,8 @@ defmodule ThescoreWeb.Schema do
       arg :position, :string
       @desc "The team of the player"
       arg :team, :string
+      @desc "The ordering for the results"
+      arg :order_by, :rushing_player_order
 
       resolve &RushingResolver.search/2
     end
