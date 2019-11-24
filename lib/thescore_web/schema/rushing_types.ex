@@ -1,4 +1,8 @@
 defmodule ThescoreWeb.Schema.RushingTypes do
+  @moduledoc """
+  Defines the GraphQL types related to player rushing data
+  """
+
   use Absinthe.Schema.Notation
   use Absinthe.Relay.Schema.Notation, :modern
 

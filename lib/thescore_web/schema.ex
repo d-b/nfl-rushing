@@ -1,4 +1,8 @@
 defmodule ThescoreWeb.Schema do
+  @moduledoc """
+  Defines the GraphQL schema for the platform
+  """
+
   use Absinthe.Schema
   use Absinthe.Relay.Schema, :modern
 

@@ -48,8 +48,8 @@ defmodule ThescoreWeb do
   def resolver do
     quote do
       import Ecto.Query
-      alias Thescore.Repo
       alias Absinthe.Relay.Connection
+      alias Thescore.Repo
     end
   end
 
