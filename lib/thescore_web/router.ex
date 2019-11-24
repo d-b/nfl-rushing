@@ -16,7 +16,7 @@ defmodule ThescoreWeb.Router do
   scope "/api" do
     pipe_through :api
 
-    forward "/graphiql", Absinthe.Plug.GraphiQL, schema: ThescoreWeb.Schema
+    post "/csv", ThescoreWeb.RushingController, :csv
 
     forward "/graphql", Absinthe.Plug, schema: ThescoreWeb.Schema
   end

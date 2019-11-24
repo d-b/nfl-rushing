@@ -37,6 +37,7 @@ defmodule Thescore.MixProject do
       {:absinthe_ecto, ">= 0.0.0"},
       {:absinthe_plug, "~> 1.4"},
       {:absinthe_relay, "~> 1.4"},
+      {:csv, "~> 2.3"},
       {:ecto_sql, "~> 3.1"},
       {:gettext, "~> 0.11"},
       {:jason, "~> 1.0"},
