@@ -8,31 +8,47 @@ import environment from '../environment.js';
 import PlayersFilter from './PlayersFilter.js';
 import PlayersTable from './PlayersTable.js';
 
-const Players = ({ players, relay }) => (
-  <Container style={{ marginTop: 20, marginBottom: 20 }}>
-    <Row>
-      <Col>
-        <h1>Players</h1>
-      </Col>
-    </Row>
-    <Row style={{ marginTop: 20, marginBottom: 20 }}>
-      <Col>
-        <PlayersFilter refetch={relay.refetchConnection} />
-      </Col>
-    </Row>
-    <Row>
-      <Col>
-        <PlayersTable players={players.rushingPlayers.edges.map(edge => edge.node)} />
-      </Col>
-    </Row>
-    <Row>
-      <Col className="text-center">
-        has more
+class Players extends React.Component {
+  render() {
+    return (
+      <Container style={{ marginTop: 20, marginBottom: 20 }}>
+        <Row>
+          <Col>
+            <h1>Players</h1>
+          </Col>
+        </Row>
+        <Row style={{ marginTop: 20, marginBottom: 20 }}>
+          <Col>
+            <PlayersFilter refetch={this.props.relay.refetchConnection} />
+          </Col>
+        </Row>
+        <Row>
+          <Col>
+            <PlayersTable players={this.props.players.rushingPlayers.edges.map(edge => edge.node)} />
+          </Col>
+        </Row>
+        <Row>
+          <Col className="text-center">
+            <Button onClick={() => this._loadMore()} title="Load More">Load More</Button>
+          </Col>
+        </Row>
+      </Container>
+    );
+  }
 
-      </Col>
-    </Row>
-  </Container>
-);
+  _loadMore() {
+    if (!this.props.relay.hasMore() || this.props.relay.isLoading()) {
+      return;
+    }
+
+    this.props.relay.loadMore(
+      10,  // Fetch the next 10 feed items
+      error => {
+        console.log(error);
+      },
+    );
+  }
+}
 
 const PlayersContainer = createPaginationContainer(
   Players,
@@ -51,19 +67,13 @@ const PlayersContainer = createPaginationContainer(
               ...PlayersTable_players
             }
           }
-          pageInfo {
-            startCursor
-            endCursor
-            hasNextPage
-            hasPreviousPage
-          }
         }
       }`
   },
   {
     direction: 'forward',
     getConnectionFromProps(props) {
-      return props.players.players;
+      return props.players.rushingPlayers;
     },
     getFragmentVariables(prevVars, totalCount) {
       return {
@@ -99,7 +109,7 @@ export default () => (
         ...Players_players
       }
     `}
-    variables={{ first: 9 }}
+    variables={{ first: 10 }}
     render={({error, props}) => {
 
       if (!props) {

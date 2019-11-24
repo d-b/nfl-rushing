@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 67042e0d370e9d1426b32b0f05dde1cc
+ * @relayHash 26b3426886d023ad270afc436c559693
  */
 
 /* eslint-disable */
@@ -43,6 +43,18 @@ fragment PlayerRow_player on RushingPlayer {
   name
   team
   position
+  attempts
+  attemptsPerGame
+  yards
+  yardsPerGame
+  average
+  touchdowns
+  longestRush
+  first
+  firstPercentage
+  twentyPlus
+  fortyPlus
+  fumbles
 }
 
 fragment PlayersTable_players on RushingPlayer {
@@ -61,10 +73,8 @@ fragment Players_players on RootQueryType {
       cursor
     }
     pageInfo {
-      startCursor
       endCursor
       hasNextPage
-      hasPreviousPage
     }
   }
 }
@@ -209,6 +219,90 @@ return {
                   {
                     "kind": "ScalarField",
                     "alias": null,
+                    "name": "attempts",
+                    "args": null,
+                    "storageKey": null
+                  },
+                  {
+                    "kind": "ScalarField",
+                    "alias": null,
+                    "name": "attemptsPerGame",
+                    "args": null,
+                    "storageKey": null
+                  },
+                  {
+                    "kind": "ScalarField",
+                    "alias": null,
+                    "name": "yards",
+                    "args": null,
+                    "storageKey": null
+                  },
+                  {
+                    "kind": "ScalarField",
+                    "alias": null,
+                    "name": "yardsPerGame",
+                    "args": null,
+                    "storageKey": null
+                  },
+                  {
+                    "kind": "ScalarField",
+                    "alias": null,
+                    "name": "average",
+                    "args": null,
+                    "storageKey": null
+                  },
+                  {
+                    "kind": "ScalarField",
+                    "alias": null,
+                    "name": "touchdowns",
+                    "args": null,
+                    "storageKey": null
+                  },
+                  {
+                    "kind": "ScalarField",
+                    "alias": null,
+                    "name": "longestRush",
+                    "args": null,
+                    "storageKey": null
+                  },
+                  {
+                    "kind": "ScalarField",
+                    "alias": null,
+                    "name": "first",
+                    "args": null,
+                    "storageKey": null
+                  },
+                  {
+                    "kind": "ScalarField",
+                    "alias": null,
+                    "name": "firstPercentage",
+                    "args": null,
+                    "storageKey": null
+                  },
+                  {
+                    "kind": "ScalarField",
+                    "alias": null,
+                    "name": "twentyPlus",
+                    "args": null,
+                    "storageKey": null
+                  },
+                  {
+                    "kind": "ScalarField",
+                    "alias": null,
+                    "name": "fortyPlus",
+                    "args": null,
+                    "storageKey": null
+                  },
+                  {
+                    "kind": "ScalarField",
+                    "alias": null,
+                    "name": "fumbles",
+                    "args": null,
+                    "storageKey": null
+                  },
+                  {
+                    "kind": "ScalarField",
+                    "alias": null,
                     "name": "__typename",
                     "args": null,
                     "storageKey": null
@@ -236,13 +330,6 @@ return {
               {
                 "kind": "ScalarField",
                 "alias": null,
-                "name": "startCursor",
-                "args": null,
-                "storageKey": null
-              },
-              {
-                "kind": "ScalarField",
-                "alias": null,
                 "name": "endCursor",
                 "args": null,
                 "storageKey": null
@@ -251,13 +338,6 @@ return {
                 "kind": "ScalarField",
                 "alias": null,
                 "name": "hasNextPage",
-                "args": null,
-                "storageKey": null
-              },
-              {
-                "kind": "ScalarField",
-                "alias": null,
-                "name": "hasPreviousPage",
                 "args": null,
                 "storageKey": null
               }
@@ -284,7 +364,7 @@ return {
     "operationKind": "query",
     "name": "PlayersContainerPaginationQuery",
     "id": null,
-    "text": "query PlayersContainerPaginationQuery(\n  $first: Int!\n  $after: ID\n  $name: String\n  $position: String\n  $team: String\n) {\n  ...Players_players\n}\n\nfragment PlayerRow_player on RushingPlayer {\n  id\n  name\n  team\n  position\n}\n\nfragment PlayersTable_players on RushingPlayer {\n  id\n  ...PlayerRow_player\n}\n\nfragment Players_players on RootQueryType {\n  rushingPlayers(first: $first, after: $after, name: $name, position: $position, team: $team) {\n    edges {\n      node {\n        ...PlayersTable_players\n        id\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      startCursor\n      endCursor\n      hasNextPage\n      hasPreviousPage\n    }\n  }\n}\n",
+    "text": "query PlayersContainerPaginationQuery(\n  $first: Int!\n  $after: ID\n  $name: String\n  $position: String\n  $team: String\n) {\n  ...Players_players\n}\n\nfragment PlayerRow_player on RushingPlayer {\n  id\n  name\n  team\n  position\n  attempts\n  attemptsPerGame\n  yards\n  yardsPerGame\n  average\n  touchdowns\n  longestRush\n  first\n  firstPercentage\n  twentyPlus\n  fortyPlus\n  fumbles\n}\n\nfragment PlayersTable_players on RushingPlayer {\n  id\n  ...PlayerRow_player\n}\n\nfragment Players_players on RootQueryType {\n  rushingPlayers(first: $first, after: $after, name: $name, position: $position, team: $team) {\n    edges {\n      node {\n        ...PlayersTable_players\n        id\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n}\n",
     "metadata": {}
   }
 };

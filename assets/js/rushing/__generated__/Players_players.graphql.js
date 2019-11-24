@@ -18,13 +18,7 @@ export type Players_players = {|
       +node: ?{|
         +$fragmentRefs: PlayersTable_players$ref
       |}
-    |}>,
-    +pageInfo: {|
-      +startCursor: ?string,
-      +endCursor: ?string,
-      +hasNextPage: boolean,
-      +hasPreviousPage: boolean,
-    |},
+    |}>
   |},
   +$refType: Players_players$ref,
 |};
@@ -158,13 +152,6 @@ const node/*: ReaderFragment*/ = {
             {
               "kind": "ScalarField",
               "alias": null,
-              "name": "startCursor",
-              "args": null,
-              "storageKey": null
-            },
-            {
-              "kind": "ScalarField",
-              "alias": null,
               "name": "endCursor",
               "args": null,
               "storageKey": null
@@ -175,13 +162,6 @@ const node/*: ReaderFragment*/ = {
               "name": "hasNextPage",
               "args": null,
               "storageKey": null
-            },
-            {
-              "kind": "ScalarField",
-              "alias": null,
-              "name": "hasPreviousPage",
-              "args": null,
-              "storageKey": null
             }
           ]
         }
@@ -190,5 +170,5 @@ const node/*: ReaderFragment*/ = {
   ]
 };
 // prettier-ignore
-(node/*: any*/).hash = 'b191a1a1e4df8660897f7ad051caa091';
+(node/*: any*/).hash = 'b4b75e9a64d8d9c62eab921dec8e7965';
 module.exports = node;

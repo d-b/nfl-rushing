@@ -16,6 +16,18 @@ export type PlayerRow_player = {|
   +name: ?string,
   +team: ?string,
   +position: ?string,
+  +attempts: ?number,
+  +attemptsPerGame: ?number,
+  +yards: ?number,
+  +yardsPerGame: ?number,
+  +average: ?number,
+  +touchdowns: ?number,
+  +longestRush: ?number,
+  +first: ?number,
+  +firstPercentage: ?number,
+  +twentyPlus: ?number,
+  +fortyPlus: ?number,
+  +fumbles: ?number,
   +$refType: PlayerRow_player$ref,
 |};
 export type PlayerRow_player$data = PlayerRow_player;
@@ -60,9 +72,93 @@ const node/*: ReaderFragment*/ = {
       "name": "position",
       "args": null,
       "storageKey": null
+    },
+    {
+      "kind": "ScalarField",
+      "alias": null,
+      "name": "attempts",
+      "args": null,
+      "storageKey": null
+    },
+    {
+      "kind": "ScalarField",
+      "alias": null,
+      "name": "attemptsPerGame",
+      "args": null,
+      "storageKey": null
+    },
+    {
+      "kind": "ScalarField",
+      "alias": null,
+      "name": "yards",
+      "args": null,
+      "storageKey": null
+    },
+    {
+      "kind": "ScalarField",
+      "alias": null,
+      "name": "yardsPerGame",
+      "args": null,
+      "storageKey": null
+    },
+    {
+      "kind": "ScalarField",
+      "alias": null,
+      "name": "average",
+      "args": null,
+      "storageKey": null
+    },
+    {
+      "kind": "ScalarField",
+      "alias": null,
+      "name": "touchdowns",
+      "args": null,
+      "storageKey": null
+    },
+    {
+      "kind": "ScalarField",
+      "alias": null,
+      "name": "longestRush",
+      "args": null,
+      "storageKey": null
+    },
+    {
+      "kind": "ScalarField",
+      "alias": null,
+      "name": "first",
+      "args": null,
+      "storageKey": null
+    },
+    {
+      "kind": "ScalarField",
+      "alias": null,
+      "name": "firstPercentage",
+      "args": null,
+      "storageKey": null
+    },
+    {
+      "kind": "ScalarField",
+      "alias": null,
+      "name": "twentyPlus",
+      "args": null,
+      "storageKey": null
+    },
+    {
+      "kind": "ScalarField",
+      "alias": null,
+      "name": "fortyPlus",
+      "args": null,
+      "storageKey": null
+    },
+    {
+      "kind": "ScalarField",
+      "alias": null,
+      "name": "fumbles",
+      "args": null,
+      "storageKey": null
     }
   ]
 };
 // prettier-ignore
-(node/*: any*/).hash = '00fe5a17ced6846e5beaf50e4e7331c7';
+(node/*: any*/).hash = '4f1e7fd39041df7a655bc88659bff36d';
 module.exports = node;
