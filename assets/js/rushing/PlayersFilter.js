@@ -10,7 +10,7 @@ export default class PlayersFilter extends React.Component {
     position: '',
     orderBy: {
       order: 'YARDS',
-      direction: 'ASC'
+      direction: 'DESC'
     }
   };
 
@@ -22,10 +22,10 @@ export default class PlayersFilter extends React.Component {
     const value = event.target.value;
 
     this.setState(state => {
-      return {
+      return {orderBy: {
         order: value,
         direction: state.orderBy.direction
-      }
+      }}
     });
   }
 
@@ -33,15 +33,14 @@ export default class PlayersFilter extends React.Component {
     const value = event.target.value;
 
     this.setState(state => {
-      return {
+      return {orderBy: {
         order: state.orderBy.order,
         direction: value
-      }
+      }}
     });
   }
 
   handleSubmit = (event) => {
-    console.log(this.state);
     event.preventDefault();
     event.stopPropagation();
     this.props.refetch(10, null, this.state);
@@ -91,8 +90,8 @@ export default class PlayersFilter extends React.Component {
           <Form.Group as={Col} controlId="authorsOrderDirection" onChange={this.handleDirectionChange}>
             <Form.Label>Direction</Form.Label>
             <Form.Control as="select" name="direction">
-              <option value="ASC">Ascending</option>
               <option value="DESC">Descending</option>
+              <option value="ASC">Ascending</option>
             </Form.Control>
           </Form.Group>
 
