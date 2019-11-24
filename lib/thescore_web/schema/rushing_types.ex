@@ -16,8 +16,8 @@ defmodule ThescoreWeb.Schema.RushingTypes do
   end
 
   input_object :rushing_player_order do
-    field :order, :rushing_order
-    field :direction, :order_direction
+    field :order, non_null(:rushing_order)
+    field :direction, non_null(:order_direction)
   end
 
   @desc "A player along with their rushing stats"
