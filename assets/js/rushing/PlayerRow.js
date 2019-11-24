@@ -6,8 +6,8 @@ const PlayerRow = ({ player }) => (
     <td>{player.name}</td>
     <td>{player.team}</td>
     <td>{player.position}</td>
-    <td>{player.attempts}</td>
     <td>{player.attemptsPerGame}</td>
+    <td>{player.attempts}</td>
     <td>{player.yards}</td>
     <td>{player.average}</td>
     <td>{player.yardsPerGame}</td>
