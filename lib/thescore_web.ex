@@ -45,6 +45,14 @@ defmodule ThescoreWeb do
     end
   end
 
+  def resolver do
+    quote do
+      import Ecto.Query
+      alias Thescore.Repo
+      alias Absinthe.Relay.Connection
+    end
+  end
+
   def router do
     quote do
       use Phoenix.Router
