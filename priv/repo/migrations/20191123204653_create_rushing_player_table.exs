@@ -22,6 +22,10 @@ defmodule Thescore.Repo.Migrations.CreateRushingPlayerTable do
     end
 
     create unique_index("rushing_players", [:name, :team, :position])
-    create index("rushing_players", ["name gin_trgm_ops"], name: :rushing_players_name_trigram_index, using: "GIN")
+
+    create index("rushing_players", ["name gin_trgm_ops"],
+             name: :rushing_players_name_trigram_index,
+             using: "GIN"
+           )
   end
 end
