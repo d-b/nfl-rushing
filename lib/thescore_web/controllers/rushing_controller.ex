@@ -48,7 +48,7 @@ defmodule ThescoreWeb.RushingController do
       |> Stream.concat(row_stream)
       |> CSV.encode()
       |> Stream.chunk_every(500)
-      |> Stream.map(&Enum.join(&1, "\r\n"))
+      |> Stream.map(&Enum.join(&1, ""))
       |> Enum.into(conn)
     end)
   end

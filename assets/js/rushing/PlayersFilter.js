@@ -46,9 +46,24 @@ export default class PlayersFilter extends React.Component {
     this.props.refetch(10, null, this.state);
   }
 
+  downloadCSV = () => {
+    const encodeGetParams = p =>
+      Object.entries(p).map(kv => kv.map(encodeURIComponent).join("=")).join("&");
+
+    const params = {
+      name: this.state.name,
+      team: this.state.team,
+      position: this.state.position,
+      order: this.state.orderBy.order,
+      direction: this.state.orderBy.direction
+    }
+
+    window.location.href = '/api/csv?' + encodeGetParams(params);
+  }
+
   render() {
     return (
-      <Form onSubmit={this.handleSubmit}>    
+      <Form onSubmit={this.handleSubmit}>
         <Form.Row>
           <Form.Group as={Col} controlId="playersName">
             <Form.Label>Name</Form.Label>
@@ -76,9 +91,9 @@ export default class PlayersFilter extends React.Component {
               placeholder="Position"
               onChange={this.handleChange}
             />
-          </Form.Group>     
-        </Form.Row> 
-        <Form.Row>  
+          </Form.Group>
+        </Form.Row>
+        <Form.Row>
           <Form.Group as={Col} controlId="playersOrderBy">
             <Form.Label>Order by</Form.Label>
             <Form.Control as="select" name="order" onChange={this.handleOrderByChange}>
@@ -95,12 +110,15 @@ export default class PlayersFilter extends React.Component {
             </Form.Control>
           </Form.Group>
 
-          <Col>
-            <Button variant="primary" type="submit">
+
+          <Form.Group as={Col} controlId="searchControl">
+            <Form.Label>Search</Form.Label><br/>
+            <Button style={{width: "100%"}} variant="primary" type="submit">
               Search
             </Button>
-          </Col>
+          </Form.Group>
         </Form.Row>
+        <Button style={{width: "100%"}} onClick={() => this.downloadCSV()} title="Download CSV">Download CSV</Button>
       </Form>
     );
   }
