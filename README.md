@@ -55,6 +55,7 @@ If you have any questions regarding requirements, do not hesitate to email your 
 * Erlang/OTP 22
 * Elixir 1.9.2
 * PostgreSQL 12.1
+* inotify-tools-3.20.1
 * nodejs v13.2.0
 * yarn 1.19.2
 * watchman 4.9.0
@@ -66,3 +67,7 @@ If you have any questions regarding requirements, do not hesitate to email your 
 4. Run `mix phx.server`
 
 The server should now be running at http://localhost:4000
+
+### Live demo
+
+For a live demo please visit https://rushing.bloemendal.me/
