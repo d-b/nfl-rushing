@@ -50,4 +50,19 @@ We will evaluate you on your ability to solve the problem defined in the require
 If you have any questions regarding requirements, do not hesitate to email your contact at theScore for clarification.
 
 ### Installation and running this solution
-... TODO
+
+##### Requirements
+* Erlang/OTP 22
+* Elixir 1.9.2
+* PostgreSQL 12.1
+* nodejs v13.2.0
+* yarn 1.19.2
+* watchman 4.9.0
+
+##### Setup steps
+1. Run `mix deps.get`
+2. Run `mix ecto.setup`
+3. Run `pushd assets && yarn && popd`
+4. Run `mix phx.server`
+
+The server should now be running at http://localhost:4000
