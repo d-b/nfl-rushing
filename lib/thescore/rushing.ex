@@ -18,7 +18,8 @@ defmodule Thescore.Rushing do
     where(query, [p], p.team == ^String.trim(team))
   end
 
-  defp build_query({:order_by, %{direction: direction, order: order}}, query) do
+  defp build_query({:order_by, %{direction: direction, order: order}}, query)
+       when direction in [:asc, :desc] and order in [:yards, :longest_rush, :touchdowns] do
     order_by(query, [p], [{^direction, field(p, ^order)}])
   end
 

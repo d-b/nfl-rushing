@@ -49,8 +49,15 @@ defmodule ThescoreWeb.RushingController do
       |> CSV.encode()
       |> Stream.chunk_every(500)
       |> Stream.map(&Enum.join(&1, ""))
-      |> Enum.into(conn)
+      |> Enum.reduce_while(conn, &transfer_chunk/2)
     end)
+  end
+
+  defp transfer_chunk(chunk, conn) do
+    case chunk(conn, chunk) do
+      {:ok, conn} -> {:cont, conn}
+      {:error, :closed} -> {:halt, conn}
+    end
   end
 
   defp build_row(%Player{} = player) do
@@ -74,6 +81,21 @@ defmodule ThescoreWeb.RushingController do
   end
 
   defp build_args(params) do
-    %{}
+    %{
+      name: params["name"],
+      team: params["team"],
+      position: params["position"],
+      order_by: builder_order_by(params)
+    }
   end
+
+  defp builder_order_by(%{"order" => order, "direction" => direction})
+       when order in ["YARDS", "LONGEST_RUSH", "TOUCHDOWNS"] and direction in ["ASC", "DESC"] do
+    %{
+      order: String.to_atom(String.downcase(order)),
+      direction: String.to_atom(String.downcase(direction))
+    }
+  end
+
+  defp builder_order_by(_), do: nil
 end
